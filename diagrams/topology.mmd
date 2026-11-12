@@ -1,0 +1,16 @@
+flowchart LR
+  Internet((Internet / ISP)) --- ISP[ISP upstream]
+  ISP --- FW[pfSense firewall\nWAN 198.51.100.2/30\nLAN 10.255.10.1/30]
+  FW --- HQ[HQ-R1\nG0/2: 10.255.10.2/30\nG0/1: WAN to Branch]
+  HQ --- HQSW[HQ-SW1]
+  HQSW --- H10[Staff VLAN 10\n10.10.10.0/24]
+  HQSW --- H20[Guest VLAN 20\n10.10.20.0/24]
+  HQSW --- H30[Server VLAN 30\n10.10.30.0/24]
+  HQSW --- H99[Management VLAN 99\n10.10.99.0/24]
+  HQ ---|OSPF area 0\n10.255.0.0/30| BR[BR-R1]
+  BR --- BRSW[BR-SW1]
+  BRSW --- B10[Staff VLAN 10\n10.20.10.0/24]
+  BRSW --- B20[Guest VLAN 20\n10.20.20.0/24]
+  BRSW --- B30[Server VLAN 30\n10.20.30.0/24]
+  BRSW --- B99[Management VLAN 99\n10.20.99.0/24]
+  VPN[Remote VPN client\n10.99.0.0/24] -. OpenVPN UDP 1194 .-> FW

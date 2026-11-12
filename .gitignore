@@ -1,0 +1,26 @@
+# Credentials and environment files
+.env
+.env.*
+!.env.example
+*.secret
+*.pem
+*.key
+*.p12
+*.pfx
+*.ovpn
+
+# Local/editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Local exports and temp files
+*.backup
+*.bak
+*.tmp
+*.swp
+
+# Keep your own Packet Tracer project under packet-tracer/ if it is safe to publish.
+# Avoid committing credentials or lab files containing sensitive information.
